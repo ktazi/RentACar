@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="RentACar.Controller.RechercheVehController"
+      prefHeight="400.0" prefWidth="600.0"
+      alignment="CENTER">
+    <padding>
+        <Insets top="30" left="20" right="20" />
+    </padding>
+    <Text styleClass="subtitle" text="Recherche Vehicule"/>
+
+    <HBox alignment="CENTER">
+        <padding>
+            <Insets top="20" left="20" right="20" bottom="10"/>
+        </padding>
+        <GridPane alignment="CENTER" hgap="10" vgap="10">
+            <padding>
+                <Insets top="20" left="20" right="20" bottom="10"/>
+            </padding>
+            <Text text="Categorie" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <ChoiceBox fx:id="classe" value="Economique" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Economique" />
+                        <String fx:value="Confort" />
+                        <String fx:value="Luxe" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <Button fx:id="classeSearch" text="Rech. Categorie" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#classSearch"/>
+            <Text text="Marque" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="marqueField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Button fx:id="marqueButton" text="Rech. Marque" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#brandSearch"/>
+            <Text text="Vehicule loue" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <CheckBox fx:id="loue" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        </GridPane>
+        <ListView fx:id="list">
+            <Label text="test"/>
+            <Label text="test"/>
+            <Label text="test"/>
+            <Label text="test"/>
+            <Label text="test"/>
+            <Label text="test"/>
+            <Label text="test"/>
+        </ListView>
+    </HBox>
+    <Text styleClass="subtitle" text="Infos Vehicule"/>
+    <GridPane alignment="CENTER" hgap="5" vgap="10">
+        <padding>
+            <Insets top="20" left="20" right="20" bottom="10"/>
+        </padding>
+        <Text text="Matricule" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Text fx:id="mat" text="..." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Text text="Kilometrage" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Text fx:id="kilo" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Text text="Matricule" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Text fx:id="carb" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Text text="Modele" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Text fx:id="modele" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Text text="Marque" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <Text fx:id="marque" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <Text text="Climatisation" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <CheckBox fx:id="clim" selected="true" disable="true" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+        <Text text="Boite Vitesse Manuelle" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <CheckBox fx:id="vit" disable="true" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+        <Text text="Categorie" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+        <Text fx:id = "cat" text="..." GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+    </GridPane>
+    <Button text="Valider" fx:id="buttonSelVeh" onAction="#selVeh"/>
+</VBox>

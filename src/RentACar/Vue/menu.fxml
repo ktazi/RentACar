@@ -1,0 +1,68 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ScrollPane?>
+<VBox fx:controller="RentACar.Controller.GeneralController"
+      xmlns:fx="http://javafx.com/fxml"
+      alignment="TOP_LEFT"
+>
+
+    <!-- En tete -->
+
+        <HBox alignment="CENTER" >
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <ImageView fx:id="usericon" styleClass="icon" fitHeight="30" fitWidth="30">
+                <Image url="@../Ressources/user.png"/>
+            </ImageView>
+            <VBox>
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+                <Text fx:id="sessiontitle" styleClass="menu-title" text="Session en cours :" />
+                <Text fx:id="user" styleClass="menu-title" text="..." />
+            </VBox>
+            <Button text="Log out" fx:id="buttonDisconnect" onAction="#handleDisconnect"/>
+        </HBox>
+        <MenuBar fx:id="menu" >
+            <menus>
+                <Menu text="Gestion Client" styleClass="menu-title">
+                    <items>
+                        <MenuItem text="Inscription" onAction="#handleMenuBar" fx:id="ajCli"/>
+                        <MenuItem text="Mise à jour informations" onAction="#handleMenuBar" fx:id="majCli"/>
+                    </items>
+                </Menu>
+                <Menu text="Gestion Vehicule" styleClass="menu-title">
+                    <items>
+                        <MenuItem text="Ajout véhicule" onAction="#handleMenuBar" fx:id="ajVeh"/>
+                        <MenuItem text="Suppression véhicule" onAction="#handleMenuBar" fx:id="supVeh"/>
+                        <SeparatorMenuItem  />
+                        <MenuItem text="Modifier véhicule" fx:id="modifVeh" onAction="#handleMenuBar"/>
+                    </items>
+                </Menu>
+                <Menu text="Service Client" styleClass="menu-title">
+                    <items>
+                        <MenuItem text="Réservation" fx:id="reservation" onAction="#handleMenuBar"/>
+                        <MenuItem text="Location" fx:id="location" onAction="#handleMenuBar"/>
+                        <MenuItem text="Retour Véhicule"  fx:id="retour" onAction="#handleMenuBar"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+
+    <!-- En tete FIN -->
+    <ScrollPane>
+        <VBox alignment="CENTER" fx:id="container"/>
+    </ScrollPane>
+
+</VBox>
+

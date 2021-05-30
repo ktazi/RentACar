@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="RentACar.Controller.MajVehController"
+            prefHeight="400.0" prefWidth="600.0"
+            alignment="TOP_CENTER">
+    <padding>
+        <Insets top="50" left="20" right="20" bottom="20"/>
+    </padding>
+    <Text text="Modifier Vehicule" styleClass="title" />
+    <GridPane alignment="CENTER" hgap="5" vgap="10">
+        <padding>
+            <Insets top="50" left="20" right="20" bottom="20"/>
+        </padding>
+        <Text text="Matricule" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="mat" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Text text="Kilometrage" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="kilo" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Text text="Matricule" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="carb" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Text text="Modele" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="modele" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Text text="Marque" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="marque" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <Text text="Climatisation" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <CheckBox fx:id="clim" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+        <Text text="Boite Vitesse Manuelle" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <CheckBox fx:id="vit" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+        <Text text="Categorie" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+        <ChoiceBox value="Economique" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Economique" />
+                    <String fx:value="Confort" />
+                    <String fx:value="Luxe" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+    </GridPane>
+    <Button text="Valider les modifications" fx:id="buttonMajVeh" onAction="#majVeh"/>
+</VBox>

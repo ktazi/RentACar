@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="RentACar.Controller.RetourVehController"
+      prefHeight="400.0" prefWidth="600.0"
+alignment="CENTER">
+    <padding>
+        <Insets top="30" right="20" left="20" bottom="20"/>
+    </padding>
+    <Text styleClass="title" text="Retourner Vehicule"/>
+    <GridPane hgap="10" vgap="10" alignment="CENTER">
+        <padding>
+            <Insets top="30" right="20" left="20" bottom="20"/>
+        </padding>
+        <Text text="Date reservation" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="date" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Text text="Nombre jours location retard" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Spinner fx:id="num"  GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <valueFactory>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory min="1" max="100000"/>
+            </valueFactory>
+        </Spinner>
+        <Text text="Description dommages" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextArea fx:id="dommmage" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Text text="Prix dommages" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Spinner fx:id="priceDommage" editable="true"  GridPane.rowIndex="3" GridPane.columnIndex="1">
+            <valueFactory>
+                <SpinnerValueFactory.DoubleSpinnerValueFactory min="1" max="1000000"/>
+            </valueFactory>
+        </Spinner>
+    </GridPane>
+    <Button text="Rendre le vehicule" fx:id="rendre" onAction="#rendre"/>
+</VBox>

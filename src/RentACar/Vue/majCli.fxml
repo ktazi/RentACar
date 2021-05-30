@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<VBox fx:controller="RentACar.Controller.MajController"
+      xmlns:fx="http://javafx.com/fxml"
+      prefHeight="400.0"
+      prefWidth="600.0"
+      alignment="CENTER">
+    <padding>
+        <Insets top="20"/>
+    </padding>
+    <Text styleClass="subtitle" text="Modifier infos client"/>
+    <GridPane alignment="CENTER" hgap="5" vgap="10">
+        <padding>
+            <Insets top="50" left="20" right="20" bottom="20"/>
+        </padding>
+        <Text text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="surname" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Text text="Prenom" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Text text="Email" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+        <TextField fx:id="email" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+        <Text text="Phone" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+        <TextField fx:id="phone" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+        <Text text="Adresse" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        <Text text="Rue" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <TextField fx:id="street" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+        <Text text="Ville" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <TextField fx:id="city" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+        <Text text="Code Postal" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <TextField fx:id="post" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+    </GridPane>
+    <Button text="Valider modification" fx:id="buttonMAJClient" onAction="#majClient"/>
+</VBox>
