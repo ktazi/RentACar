@@ -1,12 +1,14 @@
 package RentACar.Vue;
 
+import RentACar.Model.Client;
+import RentACar.Vue.Interface.ClientResearchObserver;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class ReservationVeh extends VBox {
+public class ReservationVeh extends VBox implements ClientResearchObserver {
     public ReservationVeh() {
         super();
         try {
@@ -17,5 +19,10 @@ public class ReservationVeh extends VBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void notify(Client c) {
+
     }
 }

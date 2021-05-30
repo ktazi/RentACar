@@ -42,15 +42,7 @@
             <Text text="Vehicule loue" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
             <CheckBox fx:id="loue" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
         </GridPane>
-        <ListView fx:id="list">
-            <Label text="test"/>
-            <Label text="test"/>
-            <Label text="test"/>
-            <Label text="test"/>
-            <Label text="test"/>
-            <Label text="test"/>
-            <Label text="test"/>
-        </ListView>
+        <ListView fx:id="list"/>
     </HBox>
     <Text styleClass="subtitle" text="Infos Vehicule"/>
     <GridPane alignment="CENTER" hgap="5" vgap="10">
@@ -74,5 +66,5 @@
         <Text text="Categorie" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
         <Text fx:id = "cat" text="..." GridPane.columnIndex="1" GridPane.rowIndex="7"/>
     </GridPane>
-    <Button text="Valider" fx:id="buttonSelVeh" onAction="#selVeh"/>
+    <Button text="Valider" fx:id="buttonSelVeh" onAction="#selecVeh"/>
 </VBox>

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -37,7 +35,7 @@
         <Text text="Boite Vitesse Manuelle" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
         <CheckBox fx:id="vit" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
         <Text text="Categorie" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
-        <ChoiceBox value="Economique" GridPane.columnIndex="1" GridPane.rowIndex="7">
+        <ChoiceBox fx:id="cat" value="Economique" GridPane.columnIndex="1" GridPane.rowIndex="7">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Economique" />

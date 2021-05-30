@@ -16,5 +16,7 @@ public class NewVehController {
     public CheckBox vit;
 
     public void addVeh(ActionEvent actionEvent) {
+        //TODO implementer ajout vehicule
     }
+
 }

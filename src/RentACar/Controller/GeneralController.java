@@ -71,7 +71,7 @@ public class GeneralController {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         if (connectSuccessful){
             if (currentSession == null){
-                currentSession = new Session();
+                currentSession = Session.getInstance();
             }
             currentSession.setUsername("Jean Mich");
              swapVue("../Vue/menu.fxml", stage, true);
@@ -86,7 +86,7 @@ public class GeneralController {
         System.out.println("Button disconnect Employee Pressed");
         //TODO : implementer disconnect
         if (currentSession == null){
-            currentSession = new Session();
+            currentSession = Session.getInstance();
         }
         currentSession.setUsername("Jean Mich");
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

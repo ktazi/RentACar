@@ -1,12 +1,16 @@
 package RentACar.Vue;
 
+import RentACar.Model.Client;
+import RentACar.Model.Vehicule;
+import RentACar.Vue.Interface.ClientResearchObserver;
+import RentACar.Vue.Interface.VehiculeResearchObserver;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class LocationVeh extends VBox {
+public class LocationVeh extends VBox implements ClientResearchObserver, VehiculeResearchObserver {
     public LocationVeh() {
         super();
         try {
@@ -17,5 +21,15 @@ public class LocationVeh extends VBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void notify(Client c) {
+
+    }
+
+    @Override
+    public void notify(Vehicule v) {
+
     }
 }
