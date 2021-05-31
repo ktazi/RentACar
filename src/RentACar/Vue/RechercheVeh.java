@@ -1,5 +1,6 @@
 package RentACar.Vue;
 
+import RentACar.Controller.Session;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ public class RechercheVeh extends HBox {
     public RechercheVeh() {
         super();
         try {
+            Session.getInstance().getVehiculeEntry().clear();
             Parent root = FXMLLoader.load(getClass().getResource("RechercheVeh.fxml"));
             getChildren().add(root);
         } catch (IOException e) {

@@ -22,7 +22,7 @@ alignment="TOP_CENTER">
             <Insets top="30" left="20" right="20" bottom="20"/>
         </padding>
         <Text text="Valider la suppression du vehicule selectionne ?"/>
-        <Button fx:id="button" text="Supprimer"/>
+        <Button fx:id="button" text="Supprimer" onAction="#supVehi"/>
     </VBox>
 
 </VBox>

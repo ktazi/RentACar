@@ -13,6 +13,7 @@ public class SupVeh extends VBox implements VehiculeResearchObserver {
     public SupVeh() {
         super();
         try {
+            Session.getInstance().getVehiculeEntry().clear();
             setAlignment(Pos.CENTER);
             getChildren().add(FXMLLoader.load(getClass().getResource("RechercheVeh.fxml")));
             getChildren().add(FXMLLoader.load(getClass().getResource("supVeh.fxml")));

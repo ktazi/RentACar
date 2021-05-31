@@ -29,6 +29,7 @@ public class MajCli extends VBox implements ClientResearchObserver {
     public MajCli() {
         super();
         try {
+            Session.getInstance().getClientEntry().clear();
             setAlignment(Pos.CENTER);
             getChildren().add(FXMLLoader.load(getClass().getResource("RechercheClient.fxml")));
             getChildren().add(FXMLLoader.load(getClass().getResource("majCli.fxml")));

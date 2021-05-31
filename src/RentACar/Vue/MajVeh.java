@@ -24,6 +24,7 @@ public class MajVeh extends VBox implements VehiculeResearchObserver {
     public MajVeh() {
         super();
         try {
+            Session.getInstance().getVehiculeEntry().clear();
             setAlignment(Pos.CENTER);
             getChildren().add(FXMLLoader.load(getClass().getResource("RechercheVeh.fxml")));
             getChildren().add(FXMLLoader.load(getClass().getResource("MajVeh.fxml")));

@@ -28,6 +28,8 @@ public class Session{
         vehSel = null;
     }
 
+
+
     public static Session getInstance(){
         if (Session.instance == null){
             synchronized (Session.class){
@@ -65,7 +67,10 @@ public class Session{
     }
 
     public void selCli(int i){
-        cliSel = clientEntry.get(i);
+        if (!clientEntry.isEmpty())
+            cliSel = clientEntry.get(i);
+        else
+            cliSel = null;
     }
     public Client getCli(){
         if (!clientEntry.isEmpty()){
@@ -76,7 +81,10 @@ public class Session{
 
     //select a vehicule
     public void selVeh(int i){
-        vehSel = vehiculesEntry.get(i);
+        if (!vehiculesEntry.isEmpty())
+            vehSel = vehiculesEntry.get(i);
+        else
+            vehSel = null;
     }
     //get vehicule selection
     public Vehicule getVeh(){

@@ -1,5 +1,6 @@
 package RentACar.Vue;
 
+import RentACar.Controller.Session;
 import RentACar.Model.Client;
 import RentACar.Vue.Interface.ClientResearchObserver;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ public class ReservationVeh extends VBox implements ClientResearchObserver {
     public ReservationVeh() {
         super();
         try {
+            Session.getInstance().getVehiculeEntry().clear();
+            Session.getInstance().getClientEntry().clear();
             setAlignment(Pos.CENTER);
             getChildren().add(FXMLLoader.load(getClass().getResource("RechercheVeh.fxml")));
             getChildren().add(FXMLLoader.load(getClass().getResource("RechercheClient.fxml")));
