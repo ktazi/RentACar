@@ -32,6 +32,9 @@ public class Client {
     }
     private int id;
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Client(String nom, String prenom, String email, String rue, String ville, int codePostal, String numTel, int id) {
         this.nom = nom;

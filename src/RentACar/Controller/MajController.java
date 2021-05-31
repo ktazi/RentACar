@@ -6,6 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
 public class MajController {
     public TextField surname;
     public TextField name;
@@ -17,7 +22,6 @@ public class MajController {
     public Button buttonMAJClient;
 
     public void majClient(ActionEvent actionEvent) {
-        //TODO : implementer mise a jour client
 
         Client c = Session.getInstance().getCli();
         if (c == null)
@@ -30,7 +34,34 @@ public class MajController {
             c.setNumTel(phone.getText());
             c.setRue(street.getText());
             c.setVille(city.getText());
-            System.out.println(c);
+
+            String strSql = "UPDATE client SET nom_client = '" + c.getNom() +  "', prenom_client ='" + c.getPrenom() + "', email_client = '" + c.getEmail() + "', rue_client = '" +
+                    c.getRue() + "', ville_client = '" + c.getVille() + "', codePostal_client = '" + c.getCodePostal() + "', numTel_client = '" + c.getNumTel() + "' WHERE idClient ='" + c.getId() + "';";
+
+            Properties props = new Properties();
+            try (FileInputStream fis = new FileInputStream("Config/conf.properties")) {
+                props.load(fis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                Class.forName(props.getProperty("jdbc.driver.class"));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            String url = props.getProperty("jdbc.url");
+            String login = props.getProperty("jdbc.login");
+            String password = props.getProperty("jdbc.password");
+            Connection connection = null;
+            try {
+                connection = DriverManager.getConnection(url, login, password);
+                Statement stmt = connection.createStatement();
+                stmt.executeUpdate(strSql);
+            } catch (SQLException throwables) {
+                PopUp.popup("Probleme lors de la requete", (Stage)(email.getScene().getWindow()), true);
+                throwables.printStackTrace();
+            }
+
         }
 
 

@@ -39,8 +39,7 @@
             <Text text="Marque" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
             <TextField fx:id="marqueField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
             <Button fx:id="marqueButton" text="Rech. Marque" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#brandSearch"/>
-            <Text text="Vehicule loue" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-            <CheckBox fx:id="loue" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Button fx:id="lou" text="Vehicule loue" onAction="#locSearch" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
         </GridPane>
         <ListView fx:id="list"/>
     </HBox>
@@ -53,7 +52,7 @@
         <Text fx:id="mat" text="..." GridPane.columnIndex="1" GridPane.rowIndex="0"/>
         <Text text="Kilometrage" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <Text fx:id="kilo" text="..." GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Text text="Matricule" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Text text="Type Carburant" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <Text fx:id="carb" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         <Text text="Modele" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
         <Text fx:id="modele" text="..." GridPane.columnIndex="1" GridPane.rowIndex="3"/>

@@ -29,9 +29,18 @@ public class RetourVehController {
             PopUp.popup("Veuillez saisir une description des dommages", (Stage)(date.getScene().getWindow()), true);
         }
         else{
-            //TODO : implement rendu
             Retour r = new Retour(v,date.getValue().toString(),num.getValue(),dommmage.getText(),priceDommage.getValue());
+
+
+
+
             System.out.println(r);
         }
     }
+
+    public void retour(){
+
+    }
+
+
 }

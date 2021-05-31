@@ -8,6 +8,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+
 public class MajVehController {
 
     public Button buttonMajVeh;
@@ -21,7 +26,6 @@ public class MajVehController {
     public TextField marque;
 
     public void majVeh(ActionEvent actionEvent) {
-        //TODO : implementer mise a jour vehicule
         Vehicule v = Session.getInstance().getVeh();
         if (v == null)
             PopUp.popup("Veuillez Selectionner un Vehicule", (Stage)(mat.getScene().getWindow()), true);
@@ -34,7 +38,35 @@ public class MajVehController {
             v.setBoiteMan(vit.isSelected());
             v.setMarque(marque.getText());
             v.setCategorie(cat.getValue());
-            System.out.println(v);
+            String strSql = "UPDATE vehicule SET kilometrage ='" + v.getKilometrage() + "', boiteManuelle = " +
+                    v.isBoiteMan() + ", climatise = " + v.isClim() + ", typeCarburant = '" + v.getTypeCarburant() +
+                       "' WHERE matricule ='" + v.getMatricule() + "';";
+
+            Properties props = new Properties();
+
+            try (FileInputStream fis = new FileInputStream("Config/conf.properties")) {
+                props.load(fis);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                Class.forName(props.getProperty("jdbc.driver.class"));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            String url = props.getProperty("jdbc.url");
+            String login = props.getProperty("jdbc.login");
+            String password = props.getProperty("jdbc.password");
+            try {
+                Connection connection = DriverManager.getConnection(url, login, password);
+                Statement stmt = connection.createStatement();
+                stmt.executeUpdate(strSql);
+            } catch (SQLException throwables) {
+                PopUp.popup("Probleme lors de la requete", (Stage)(carb.getScene().getWindow()), true);
+                throwables.printStackTrace();
+            }
+
+
         }
 
     }

@@ -4,7 +4,6 @@ import RentACar.Model.Client;
 import RentACar.Model.Vehicule;
 import RentACar.Vue.Interface.ClientResearchObserver;
 import RentACar.Vue.Interface.VehiculeResearchObserver;
-
 import java.util.ArrayList;
 
 public class Session{
@@ -18,7 +17,6 @@ public class Session{
     private Client cliSel;
     private Vehicule vehSel;
 
-
     private Session(){
         vehiculesEntry = new ArrayList<>();
         clientEntry = new ArrayList<>();
@@ -26,10 +24,8 @@ public class Session{
         obsv = null;
         cliSel = null;
         vehSel = null;
+
     }
-
-
-
     public static Session getInstance(){
         if (Session.instance == null){
             synchronized (Session.class){

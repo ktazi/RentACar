@@ -9,7 +9,11 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class RechercheVehController {
     public ChoiceBox<String> classe;
@@ -31,30 +35,36 @@ public class RechercheVehController {
 
     public void classSearch(ActionEvent actionEvent) {
         list.getItems().clear();
+        try {
+            findVeh(findVehCat(classe.getValue()));
+        } catch (SQLException throwables) {
+            PopUp.popup("Recherche ratee",(Stage)(mat.getScene().getWindow()), true);
+            throwables.printStackTrace();
+        }
 
-        //TODO : implementer select par categorie et mettre sous forme de
-
-        /* Debut simulation */
-        Session.getInstance().getVehiculeEntry().clear();
-        Session.getInstance().getVehiculeEntry().add(new Vehicule("mat6","dsfs", 1932, true, true, true, "lwkeflw", "wekflwemflwemfw", "wefnwkejfnw"));
-        Session.getInstance().getVehiculeEntry().add(new Vehicule("mat7","dsfs", 1932, true, true, true, "lwkeflw", "wekflwemflwemfw", "wefnwkejfnw"));
-        Session.getInstance().getVehiculeEntry().add(new Vehicule("mat8","dsfs", 1932, true, true, true, "lwkeflw", "wekflwemflwemfw", "wefnwkejfnw"));
-        /* Fin simulation */
         refreshList();
 
     }
 
     public void brandSearch(ActionEvent actionEvent) {
         list.getItems().clear();
+        try {
+            findVeh(findVehMarque(marqueField.getText()));
+        } catch (SQLException throwables) {
+            PopUp.popup("Recherche ratee",(Stage)(mat.getScene().getWindow()), true);
+            throwables.printStackTrace();
+        }
+        refreshList();
+    }
 
-        //TODO : implementer select par categorie et mettre sous forme de
-
-        /* Debut simulation */
-        Session.getInstance().getVehiculeEntry().clear();
-        Session.getInstance().getVehiculeEntry().add(new Vehicule("mat","dsfs", 1932, true, true, true, "lwkeflw", "wekflwemflwemfw", "wefnwkejfnw"));
-        Session.getInstance().getVehiculeEntry().add(new Vehicule("mat2","dsfs", 1932, true, true, true, "lwkeflw", "wekflwemflwemfw", "wefnwkejfnw"));
-        Session.getInstance().getVehiculeEntry().add(new Vehicule("mat3","dsfs", 1932, true, true, true, "lwkeflw", "wekflwemflwemfw", "wefnwkejfnw"));
-        /* Fin simulation */
+    public void locSearch(ActionEvent actionEvent) {
+        list.getItems().clear();
+        try {
+            findVeh(findVehLocation());
+        } catch (SQLException throwables) {
+            PopUp.popup("Recherche ratee",(Stage)(mat.getScene().getWindow()), true);
+            throwables.printStackTrace();
+        }
         refreshList();
     }
 
@@ -81,6 +91,54 @@ public class RechercheVehController {
         });
     }
 
+    public String findVehCat(String cat){
+        String strSql = "SELECT * FROM vehicule NATURAL JOIN modele WHERE typeCategorie = '" + cat + "';";
+        return strSql;
+    }
+
+    public String findVehMarque(String marque){
+        String strSql = "SELECT * FROM vehicule NATURAL JOIN modele WHERE marque = '" + marque + "';";
+        return strSql;
+    }
+
+    public String findVehLocation(){
+        String strSql = "select * from Vehicule natural join (select matricule from loue where location_en_cours) as lou natural join modele;";
+        return strSql;
+    }
+
+    public static void findVeh(String strSql) throws SQLException {
+        Properties props = new Properties();
+        try (FileInputStream fis = new FileInputStream("Config/conf.properties")) {
+            props.load(fis);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Class.forName(props.getProperty("jdbc.driver.class"));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        String url = props.getProperty("jdbc.url");
+        String login = props.getProperty("jdbc.login");
+        String password = props.getProperty("jdbc.password");
+        Connection connection = DriverManager.getConnection(url, login, password);
+        Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery(strSql);
+        Session.getInstance().getVehiculeEntry().clear();
+        while (resultSet.next()) {
+            Session.getInstance().getVehiculeEntry().add(new Vehicule(
+                    resultSet.getString("matricule"),
+                    resultSet.getString("typeCarburant"),
+                    resultSet.getInt("kilometrage"),
+                    resultSet.getBoolean("location"),
+                    resultSet.getBoolean("boiteManuelle"),
+                    resultSet.getBoolean("climatise"),
+                    resultSet.getString("modele"),
+                    resultSet.getString("marque"),
+                    resultSet.getString("typeCategorie")));
+        }
+
+    }
     private void putVehicule(Vehicule c){
         mat.setText(c.getMatricule());
         kilo.setText(Integer.toString(c.getKilometrage()));
@@ -92,7 +150,6 @@ public class RechercheVehController {
         cat.setText(c.getCategorie());
         this.vehicule = c;
     }
-
 
 
 
