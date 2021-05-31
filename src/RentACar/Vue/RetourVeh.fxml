@@ -23,7 +23,7 @@ alignment="CENTER">
         <Text text="Nombre jours location retard" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <Spinner fx:id="num"  GridPane.rowIndex="1" GridPane.columnIndex="1">
             <valueFactory>
-                <SpinnerValueFactory.IntegerSpinnerValueFactory min="1" max="100000"/>
+                <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="100000"/>
             </valueFactory>
         </Spinner>
         <Text text="Description dommages" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
@@ -31,7 +31,7 @@ alignment="CENTER">
         <Text text="Prix dommages" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
         <Spinner fx:id="priceDommage" editable="true"  GridPane.rowIndex="3" GridPane.columnIndex="1">
             <valueFactory>
-                <SpinnerValueFactory.DoubleSpinnerValueFactory min="1" max="1000000"/>
+                <SpinnerValueFactory.DoubleSpinnerValueFactory min="0" max="1000000"/>
             </valueFactory>
         </Spinner>
     </GridPane>
