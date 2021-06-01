@@ -19,8 +19,6 @@
         <padding>
             <Insets top="30" right="20" left="20" bottom="20"/>
         </padding>
-        <Text text="Date reservation" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <DatePicker fx:id="date" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
         <Text text="Nombre jours location retard" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <Spinner fx:id="num"  GridPane.rowIndex="1" GridPane.columnIndex="1">
             <valueFactory>
@@ -36,7 +34,7 @@
             </valueFactory>
         </Spinner>
         <Text text="Quantite essence" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-        <Spinner GridPane.rowIndex="4" GridPane.columnIndex="1" editable="true" >
+        <Spinner fx:id="carb" GridPane.rowIndex="4" GridPane.columnIndex="1" editable="true" >
             <valueFactory>
                 <SpinnerValueFactory.DoubleSpinnerValueFactory min="0" max="100"/>
             </valueFactory>

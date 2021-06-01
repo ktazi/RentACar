@@ -38,6 +38,7 @@ public class LocationVehController {
 
     public void loue(){
         String strSql = "select location_en_cours from RentACar.loue where matricule = '"+ Session.getInstance().getVeh().getMatricule()+"' and idclient="+Session.getInstance().getCli().getId()+" and date_location= '"+date.getValue().toString()+"';";
+        String strSql5 = "select * from RentACar.loue where idclient="+Session.getInstance().getCli().getId()+ " and location_en_cours=true  ;";
         Properties props = new Properties();
         try (FileInputStream fis = new FileInputStream("Config/conf.properties")) {
             props.load(fis);
@@ -63,7 +64,7 @@ public class LocationVehController {
                     PopUp.popup("La location du vehicule a deja ete validee", (Stage)date.getScene().getWindow(), true);
                 }
                 else {
-                    String strSql2 = "UPDATE loue SET type_assurance = '" + assur.getValue() + "' , duree_location = " + num.getValue() + ", location_en_cours = true;";
+                    String strSql2 = "UPDATE loue SET type_assurance = '" + assur.getValue() + "' , duree_location = " + num.getValue() + ", location_en_cours = true where matricule = '"+ Session.getInstance().getVeh().getMatricule()+"' and idclient="+Session.getInstance().getCli().getId()+" and date_location= '"+date.getValue().toString()+"';";
                     Statement stmt2 = connection.createStatement();
                     stmt2.executeUpdate(strSql2);
                 }
@@ -92,11 +93,18 @@ public class LocationVehController {
                     available = available && ((fin.before(da) && fin.before(daf)) || (d.after(da) && d.after(daf)));
                 }
                 if (available) {
-                    strSql = "INSERT INTO loue (idClient, matricule, date_location, duree_location, location_en_cours, type_assurance)" +
-                            "VALUES (" + Session.getInstance().getCli().getId() + ", '" + Session.getInstance().getVeh().getMatricule() + "', '"+ date.getValue().toString() +"', " + num.getValue() + ", true, '" + assur.getValue() +"');";
-                    Statement stmt3 = connection.createStatement();
-                    stmt3.executeUpdate(strSql);
-                    PopUp.popup("Vehicule Loue avec succes", (Stage)date.getScene().getWindow(), false);
+                    Statement stmt5 = connection.createStatement();
+                    ResultSet resSet3 = stmt5.executeQuery(strSql5);
+                    if (resSet3.next()){
+                        PopUp.popup("Erreur Client loue deja un vehicule", (Stage)date.getScene().getWindow(), true);
+                    }
+                    else {
+                        strSql = "INSERT INTO loue (idClient, matricule, date_location, duree_location, location_en_cours, type_assurance)" +
+                                "VALUES (" + Session.getInstance().getCli().getId() + ", '" + Session.getInstance().getVeh().getMatricule() + "', '"+ date.getValue().toString() +"', " + num.getValue() + ", true, '" + assur.getValue() +"');";
+                        Statement stmt3 = connection.createStatement();
+                        stmt3.executeUpdate(strSql);
+                        PopUp.popup("Vehicule Loue avec succes", (Stage)date.getScene().getWindow(), false);
+                    }
                 }
                 else{
                     PopUp.popup("Erreur Vehicule non disponible", (Stage)date.getScene().getWindow(), true);
